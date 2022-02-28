@@ -72,7 +72,7 @@ namespace Waterly
         private void OnLaunchedOrActivated(IActivatedEventArgs e)
         {
             // Initialize the root frame (only once)
-            if (!(Window.Current.Content is Frame rootFrame))
+            if (Window.Current.Content is not Frame rootFrame)
             {
                 // Create a frame that will act as navigation context
                 rootFrame = new();

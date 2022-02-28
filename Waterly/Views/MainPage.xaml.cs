@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -60,7 +61,7 @@ namespace Waterly
                 var prevPageType = ContentFrame.CurrentSourcePageType;
 
                 // Only navigate if the selected page isn't currently loaded
-                if (!(newPageType is null) && !Equals(prevPageType, newPageType))
+                if (newPageType is not null && prevPageType != newPageType)
                 {
                     ContentFrame.Navigate(newPageType, null, args.RecommendedNavigationTransitionInfo);
                 }

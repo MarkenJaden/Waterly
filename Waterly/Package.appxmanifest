@@ -15,7 +15,7 @@
 
   <Properties>
     <DisplayName>Waterly</DisplayName>
-    <PublisherDisplayName>jjsch</PublisherDisplayName>
+    <PublisherDisplayName>MarkenJaden</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -37,13 +37,10 @@
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="Waterly"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\WaterDrops.png" ShortName="WaterlyLogo">
+        </uap:DefaultTile >
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
