@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="16681a7d-44f6-4088-938d-a29b5b2a0059"
-    Publisher="CN=jjsch"
+    Name="29506MarkenJaden.Waterly"
+    Publisher="CN=BC08A000-3D82-430D-8831-AC747FF364E4"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="16681a7d-44f6-4088-938d-a29b5b2a0059" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="50b9dfb7-cd9c-4af8-bb3c-e69370bf74dc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Waterly</DisplayName>
