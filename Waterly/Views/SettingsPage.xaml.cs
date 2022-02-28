@@ -83,49 +83,45 @@ namespace Waterly
             // Adjust layout orientation based on window size
             if (RootPanel.Orientation == Orientation.Vertical)
             {
-                if (newHeight < MIN_HEIGHT_FOR_VERTICAL_LAYOUT 
-                    && newWidth >= MIN_WIDTH_FOR_HORIZONTAL_LAYOUT)
+                if (!(newHeight < MIN_HEIGHT_FOR_VERTICAL_LAYOUT) ||
+                    !(newWidth >= MIN_WIDTH_FOR_HORIZONTAL_LAYOUT)) return;
+                RootPanel.Orientation = Orientation.Horizontal;
+                StartupDescriptionTextBlock.Width = 250;
+                StartupDescriptionTextBlock.Margin = new()
                 {
-                    RootPanel.Orientation = Orientation.Horizontal;
-                    StartupDescriptionTextBlock.Width = 250;
-                    StartupDescriptionTextBlock.Margin = new()
-                    {
-                        Left = 10,
-                        Top = 10,
-                        Right = 90,
-                        Bottom = (StartupDescriptionTextBlock.Text == string.Empty ? 10 : 20)
-                    };
-                    ColorThemeSettingStackPanel.Margin = new()
-                    {
-                        Left = 10,
-                        Top = 0,
-                        Right = 0,
-                        Bottom = 0
-                    };
-                }
+                    Left = 10,
+                    Top = 10,
+                    Right = 90,
+                    Bottom = (StartupDescriptionTextBlock.Text == string.Empty ? 10 : 20)
+                };
+                ColorThemeSettingStackPanel.Margin = new()
+                {
+                    Left = 10,
+                    Top = 0,
+                    Right = 0,
+                    Bottom = 0
+                };
             }
             else    /* Orientation.Horizontal */
             {
-                if (newWidth < MIN_WIDTH_FOR_HORIZONTAL_LAYOUT 
-                    || newHeight >= MIN_HEIGHT_FOR_VERTICAL_LAYOUT)
+                if (!(newWidth < MIN_WIDTH_FOR_HORIZONTAL_LAYOUT) &&
+                    !(newHeight >= MIN_HEIGHT_FOR_VERTICAL_LAYOUT)) return;
+                RootPanel.Orientation = Orientation.Vertical;
+                StartupDescriptionTextBlock.Width = 500;
+                StartupDescriptionTextBlock.Margin = new()
                 {
-                    RootPanel.Orientation = Orientation.Vertical;
-                    StartupDescriptionTextBlock.Width = 500;
-                    StartupDescriptionTextBlock.Margin = new()
-                    {
-                        Left = 10,
-                        Top = 10,
-                        Right = 0,
-                        Bottom = (StartupDescriptionTextBlock.Text == string.Empty ? 10 : 20)
-                    };
-                    ColorThemeSettingStackPanel.Margin = new()
-                    {
-                        Left = 10,
-                        Top = 0,
-                        Right = 0,
-                        Bottom = 30
-                    };
-                }
+                    Left = 10,
+                    Top = 10,
+                    Right = 0,
+                    Bottom = (StartupDescriptionTextBlock.Text == string.Empty ? 10 : 20)
+                };
+                ColorThemeSettingStackPanel.Margin = new()
+                {
+                    Left = 10,
+                    Top = 0,
+                    Right = 0,
+                    Bottom = 30
+                };
             }
         }
 
@@ -158,23 +154,13 @@ namespace Waterly
         {
             var radioButton = sender as RadioButton;
 
-            switch (radioButton.Tag)
+            App.Settings.ColorThemeSetting = radioButton.Tag switch
             {
-                case "light":
-                    App.Settings.ColorThemeSetting = Settings.ColorTheme.Light;
-                    break;
-
-                case "dark":
-                    App.Settings.ColorThemeSetting = Settings.ColorTheme.Dark;
-                    break;
-
-                case "system":
-                    App.Settings.ColorThemeSetting = Settings.ColorTheme.System;
-                    break;
-
-                default:
-                    throw new ApplicationException("Invalid RadioButon tag");
-            }
+                "light" => Settings.ColorTheme.Light,
+                "dark" => Settings.ColorTheme.Dark,
+                "system" => Settings.ColorTheme.System,
+                _ => throw new ApplicationException("Invalid RadioButon tag")
+            };
         }
     }
 }

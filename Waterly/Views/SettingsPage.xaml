@@ -183,7 +183,7 @@
                     x:Uid="RepositoryHyperlink"
                     Margin="10,5,0,0"
                     FontSize="13"
-                    NavigateUri="https://github.com/paolo257428/WaterDrops" />
+                    NavigateUri="https://github.com/MarkenJaden/Waterly" />
 
             </StackPanel>
 

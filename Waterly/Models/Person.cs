@@ -50,7 +50,7 @@ namespace Waterly.Models
         /// <summary>
         /// The user's height, as specified in the BMI Calculator form
         /// </summary>
-        public float Height { get => height; set { height = value; Save(); } }
+        public float Height { get => height; set { height = value/100; Save(); } }
 
         /// <summary>
         /// A metric representative of the user's body health status, based on the Body Mass Index value
@@ -77,26 +77,21 @@ namespace Waterly.Models
         /// <summary>
         /// The Body Mass Index (BMI) value, computed using the user-provided body information
         /// </summary>
-        public float BodyMassIndex { get => height > 0 ? weight / (height * height) : 0.0f; }
+        public float BodyMassIndex => (float)(height > 0 ? weight / Math.Pow(height, 2) : 0.0f);
 
         /// <summary>
         /// The amount of water that a person should be drinking in a day, based on gender and age
         /// NOTE: not currently used, WaterTarget is hard-coded as 2000 mL
         /// </summary>
-        public int WaterTarget
-        {
-            get
+        public int WaterTarget =>
+            age switch
             {
-                return age switch
-                {
-                    <= 3 => 1200,
-                    <= 6 => 1600,
-                    <= 10 => 1800,
-                    <= 14 => (gender == GenderType.Male) ? 2100 : 1900,
-                    _ => (gender == GenderType.Male) ? 2500 : 2000
-                };
-            }
-        }
+                <= 3 => 1200,
+                <= 6 => 1600,
+                <= 10 => 1800,
+                <= 14 => (gender == GenderType.Male) ? 2100 : 1900,
+                _ => (gender == GenderType.Male) ? 2500 : 2000
+            };
 
 
         /// <summary>

@@ -184,7 +184,7 @@
     <value>Height</value>
   </data>
   <data name="HeightUnitTextBlock.Text" xml:space="preserve">
-    <value>m</value>
+    <value>cm</value>
   </data>
   <data name="InformationTitle.Text" xml:space="preserve">
     <value>Information</value>

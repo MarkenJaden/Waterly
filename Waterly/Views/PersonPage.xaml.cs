@@ -102,6 +102,7 @@ namespace Waterly
                     text = resources.GetString("ExtremelyObeseString");
                     break;
 
+                case Person.HealthStatusType.Undefined:
                 default:
                     brush = Resources["TextBlockSemiLightForeground"] as SolidColorBrush;
                     text = "---";
