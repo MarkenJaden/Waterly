@@ -23,16 +23,14 @@ namespace Waterly.Models
         public event ColorThemeChangedHandler ColorThemeChanged;
 
 
-        private StartupTask startupTask = null;
+        private StartupTask startupTask;
 
         /// <summary>
         /// Represents whether the user has control over the StartupTaskState setting,
         /// or if the system has control over it and prevents it to be changed
         /// </summary>
         public bool CanToggleAutoStartup =>
-            startupTask != null &&
-            (startupTask.State == StartupTaskState.Enabled ||
-             startupTask.State == StartupTaskState.Disabled);
+            startupTask is { State: StartupTaskState.Enabled or StartupTaskState.Disabled };
 
         /// <summary>
         /// Provides additional information about the app's AutoStartup state

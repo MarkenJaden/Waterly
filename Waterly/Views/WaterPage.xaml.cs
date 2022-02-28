@@ -116,45 +116,41 @@ namespace Waterly
             // Adjust layout orientation based on window size
             if (RootPanel.Orientation == Orientation.Vertical)
             {
-                if (newWidth >= MIN_WIDTH_FOR_HORIZONTAL_LAYOUT)
+                if (!(newWidth >= MIN_WIDTH_FOR_HORIZONTAL_LAYOUT)) return;
+                RootPanel.Orientation = Orientation.Horizontal;
+                RootPanel.Margin = new()
                 {
-                    RootPanel.Orientation = Orientation.Horizontal;
-                    RootPanel.Margin = new()
-                    {
-                        Left = 32,
-                        Top = 50,
-                        Right = 0,
-                        Bottom = 0
-                    };
-                    CircleGrid.Margin = new()
-                    {
-                        Left = 15,
-                        Top = 0,
-                        Right = 30,
-                        Bottom = 10
-                    };
-                }
+                    Left = 32,
+                    Top = 50,
+                    Right = 0,
+                    Bottom = 0
+                };
+                CircleGrid.Margin = new()
+                {
+                    Left = 15,
+                    Top = 0,
+                    Right = 30,
+                    Bottom = 10
+                };
             }
             else    /* Orientation.Horizontal */
             {
-                if (newWidth < MIN_WIDTH_FOR_HORIZONTAL_LAYOUT)
+                if (!(newWidth < MIN_WIDTH_FOR_HORIZONTAL_LAYOUT)) return;
+                RootPanel.Orientation = Orientation.Vertical;
+                CircleGrid.Margin = new()
                 {
-                    RootPanel.Orientation = Orientation.Vertical;
-                    CircleGrid.Margin = new()
-                    {
-                        Left = 15,
-                        Top = 0,
-                        Right = 30,
-                        Bottom = 20
-                    };
-                    RootPanel.Margin = new()
-                    {
-                        Left = 60,
-                        Top = 40,
-                        Right = 0,
-                        Bottom = 20
-                    };
-                }
+                    Left = 15,
+                    Top = 0,
+                    Right = 30,
+                    Bottom = 20
+                };
+                RootPanel.Margin = new()
+                {
+                    Left = 60,
+                    Top = 40,
+                    Right = 0,
+                    Bottom = 20
+                };
             }
         }
 

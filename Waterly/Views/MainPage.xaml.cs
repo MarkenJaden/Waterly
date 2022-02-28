@@ -117,16 +117,16 @@ namespace Waterly
         private void ApplyRequestedColorTheme()
         {
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.ForegroundColor = (Resources["TitleBarForeground"] as SolidColorBrush).Color;
-            titleBar.BackgroundColor = (Resources["NavigationViewTopPaneBackground"] as SolidColorBrush).Color;
-            titleBar.ButtonForegroundColor = (Resources["TitleBarForeground"] as SolidColorBrush).Color;
-            titleBar.ButtonBackgroundColor = (Resources["NavigationViewTopPaneBackground"] as SolidColorBrush).Color;
-            titleBar.ButtonHoverForegroundColor = (Resources["TitleBarForeground"] as SolidColorBrush).Color;
-            titleBar.ButtonHoverBackgroundColor = (Resources["TitleBarButtonHoverBackground"] as SolidColorBrush).Color;
-            titleBar.InactiveForegroundColor = (Resources["TitleBarInactiveForeground"] as SolidColorBrush).Color;
-            titleBar.InactiveBackgroundColor = (Resources["NavigationViewTopPaneBackground"] as SolidColorBrush).Color;
-            titleBar.ButtonInactiveForegroundColor = (Resources["TitleBarInactiveForeground"] as SolidColorBrush).Color;
-            titleBar.ButtonInactiveBackgroundColor = (Resources["NavigationViewTopPaneBackground"] as SolidColorBrush).Color;
+            titleBar.ForegroundColor = ((SolidColorBrush)Resources["TitleBarForeground"]).Color;
+            titleBar.BackgroundColor = ((SolidColorBrush)Resources["NavigationViewTopPaneBackground"]).Color;
+            titleBar.ButtonForegroundColor = ((SolidColorBrush)Resources["TitleBarForeground"]).Color;
+            titleBar.ButtonBackgroundColor = ((SolidColorBrush)Resources["NavigationViewTopPaneBackground"]).Color;
+            titleBar.ButtonHoverForegroundColor = ((SolidColorBrush)Resources["TitleBarForeground"]).Color;
+            titleBar.ButtonHoverBackgroundColor = ((SolidColorBrush)Resources["TitleBarButtonHoverBackground"]).Color;
+            titleBar.InactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForeground"]).Color;
+            titleBar.InactiveBackgroundColor = ((SolidColorBrush)Resources["NavigationViewTopPaneBackground"]).Color;
+            titleBar.ButtonInactiveForegroundColor = ((SolidColorBrush)Resources["TitleBarInactiveForeground"]).Color;
+            titleBar.ButtonInactiveBackgroundColor = ((SolidColorBrush)Resources["NavigationViewTopPaneBackground"]).Color;
 
             var theme = Application.Current.RequestedTheme == ApplicationTheme.Light ?
                 ElementTheme.Light : ElementTheme.Dark;

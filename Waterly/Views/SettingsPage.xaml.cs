@@ -77,14 +77,14 @@ namespace Waterly
 
         private void AdjustPageLayout(double newWidth, double newHeight)
         {
-            const double MIN_HEIGHT_FOR_VERTICAL_LAYOUT = 620;
-            const double MIN_WIDTH_FOR_HORIZONTAL_LAYOUT = 680;
+            const double minHeightForVerticalLayout = 620;
+            const double minWidthForHorizontalLayout = 680;
 
             // Adjust layout orientation based on window size
             if (RootPanel.Orientation == Orientation.Vertical)
             {
-                if (!(newHeight < MIN_HEIGHT_FOR_VERTICAL_LAYOUT) ||
-                    !(newWidth >= MIN_WIDTH_FOR_HORIZONTAL_LAYOUT)) return;
+                if (!(newHeight < minHeightForVerticalLayout) ||
+                    !(newWidth >= minWidthForHorizontalLayout)) return;
                 RootPanel.Orientation = Orientation.Horizontal;
                 StartupDescriptionTextBlock.Width = 250;
                 StartupDescriptionTextBlock.Margin = new()
@@ -104,8 +104,8 @@ namespace Waterly
             }
             else    /* Orientation.Horizontal */
             {
-                if (!(newWidth < MIN_WIDTH_FOR_HORIZONTAL_LAYOUT) &&
-                    !(newHeight >= MIN_HEIGHT_FOR_VERTICAL_LAYOUT)) return;
+                if (!(newWidth < minWidthForHorizontalLayout) &&
+                    !(newHeight >= minHeightForVerticalLayout)) return;
                 RootPanel.Orientation = Orientation.Vertical;
                 StartupDescriptionTextBlock.Width = 500;
                 StartupDescriptionTextBlock.Margin = new()

@@ -62,15 +62,15 @@ namespace Waterly.Models
                 var bmi = BodyMassIndex;
                 if (bmi == 0.0f)
                     return HealthStatusType.Undefined;
-                else if (bmi < 18.5)
+                if (bmi < 18.5)
                     return HealthStatusType.Underweight;
-                else if (bmi < 25)
+                if (bmi < 25)
                     return HealthStatusType.Healthy;
-                else if (bmi < 30)
+                if (bmi < 30)
                     return HealthStatusType.Overweight;
-                else if (bmi < 40)
+                if (bmi < 40)
                     return HealthStatusType.Obese;
-                else return HealthStatusType.ExtremelyObese;
+                return HealthStatusType.ExtremelyObese;
             }
         }
 

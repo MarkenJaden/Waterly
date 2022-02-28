@@ -7,7 +7,7 @@ namespace Waterly.Models
 
     public class WaterAmountEventArgs : EventArgs
     {
-        public int DeltaAmount { get; private set; }
+        public int DeltaAmount { get; }
 
         public WaterAmountEventArgs(int amount)
         {
@@ -17,7 +17,7 @@ namespace Waterly.Models
 
     public class WaterSettingsEventArgs : EventArgs
     {
-        public bool RescheduleTime { get; private set; }
+        public bool RescheduleTime { get; }
 
         /// <param name="rescheduleTime">Whether the scheduled time of previous reminders has to be recalculated
         /// (e.g. when ReminderInterval is changed)</param>
@@ -39,11 +39,11 @@ namespace Waterly.Models
         public event WaterSettingsChangedHandler WaterSettingsChanged;
 
 
-        private const int DEFAULT_REMINDER_INTERVAL = 30;
-        private const int DEFAULT_REMINDER_DELAY = 5;
-        private const int DEFAULT_GLASS_SIZE = 250;
-        private const int DEFAULT_WATER_AMOUNT = 0;
-        private const int DEFAULT_WATER_TARGET = 2000;
+        private const int DefaultReminderInterval = 30;
+        private const int DefaultReminderDelay = 5;
+        private const int DefaultGlassSize = 250;
+        private const int DefaultWaterAmount = 0;
+        private const int DefaultWaterTarget = 2000;
         
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Waterly.Models
         public DateTime Timestamp { get; private set; }
 
 
-        private int amount = DEFAULT_WATER_AMOUNT;
+        private int amount = DefaultWaterAmount;
         /// <summary>
         /// The amount of water drank by the user in the current day, 
         /// written in the application's LocalSettings storage
@@ -72,7 +72,7 @@ namespace Waterly.Models
             }
         }
 
-        private int target = DEFAULT_WATER_TARGET;
+        private int target = DefaultWaterTarget;
         /// <summary>
         /// How much water the user has to drink throughout the day
         /// </summary>
@@ -81,7 +81,7 @@ namespace Waterly.Models
             get => target; 
             set
             {
-                if (value > 0 && value <= 10000)
+                if (value is > 0 and <= 10000)
                 {
                     target = value;
                     Save();
@@ -91,12 +91,12 @@ namespace Waterly.Models
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("value", "Valid WaterTarget values range from 1 to 10000 mL");
+                    throw new ArgumentOutOfRangeException(nameof(value), @"Valid WaterTarget values range from 1 to 10000 mL");
                 }
             }
         }
 
-        private int glassSize = DEFAULT_GLASS_SIZE;
+        private int glassSize = DefaultGlassSize;
         /// <summary>
         /// The amount of water (in mL) contained in a glass
         /// </summary>
@@ -105,7 +105,7 @@ namespace Waterly.Models
             get => glassSize;
             set
             {
-                if (value > 0 && value <= 2000)
+                if (value is > 0 and <= 2000)
                 {
                     glassSize = value;
                     Save();
@@ -115,12 +115,12 @@ namespace Waterly.Models
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), "Valid GlassSize values range from 1 to 2000 mL");
+                    throw new ArgumentOutOfRangeException(nameof(value), @"Valid GlassSize values range from 1 to 2000 mL");
                 }
             }
         }
 
-        private int reminderInterval = DEFAULT_REMINDER_INTERVAL;
+        private int reminderInterval = DefaultReminderInterval;
         /// <summary>
         /// The time (in minutes) used to schedule periodic drink reminders
         /// </summary>
@@ -129,7 +129,7 @@ namespace Waterly.Models
             get => reminderInterval;
             set
             {
-                if (value > 0 && value <= 1440)
+                if (value is > 0 and <= 1440)
                 {
                     reminderInterval = value;
                     Save();
@@ -139,12 +139,12 @@ namespace Waterly.Models
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("value", "Valid ReminderInterval values range from 1 to 1440 minutes");
+                    throw new ArgumentOutOfRangeException(nameof(value), @"Valid ReminderInterval values range from 1 to 1440 minutes");
                 }
             }
         }
 
-        private int reminderDelay = DEFAULT_REMINDER_DELAY;
+        private int reminderDelay = DefaultReminderDelay;
         /// <summary>
         /// The time (in minutes) by how much the drink reminder is postponed
         /// </summary>
@@ -163,7 +163,7 @@ namespace Waterly.Models
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("value", "Valid ReminderDelay values range from 1 to 720 minutes");
+                    throw new ArgumentOutOfRangeException(nameof(value), @"Valid ReminderDelay values range from 1 to 720 minutes");
                 }
             }
         }
@@ -182,11 +182,11 @@ namespace Waterly.Models
                 // Load values from LocalSettings (if not available default to 0)
                 if (container != null)
                 {
-                    reminderInterval = (container["ReminderInterval"] as int?).Value;
-                    reminderDelay = (container["ReminderDelay"] as int?).Value;
-                    glassSize = (container["GlassSize"] as int?).Value;
-                    target = (container["Target"] as int?).Value;
-                    amount = (container["Amount"] as int?).Value;
+                    reminderInterval = ((int?)container["ReminderInterval"]).Value;
+                    reminderDelay = ((int?)container["ReminderDelay"]).Value;
+                    glassSize = ((int?)container["GlassSize"]).Value;
+                    target = ((int?)container["Target"]).Value;
+                    amount = ((int?)container["Amount"]).Value;
                     Timestamp = DateTime.ParseExact(container["Timestamp"] as string, "O",
                         CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind);
 
@@ -194,7 +194,7 @@ namespace Waterly.Models
                     var today = DateTime.UtcNow;
                     if (today.Date > Timestamp.Date)
                     {
-                        amount = DEFAULT_WATER_AMOUNT;
+                        amount = DefaultWaterAmount;
                         Timestamp = today;
                     }
                 }
@@ -204,11 +204,11 @@ namespace Waterly.Models
                 Console.Error.WriteLine(e.Message);
 
                 // Load default settings and values
-                reminderInterval = DEFAULT_REMINDER_INTERVAL;
-                reminderDelay = DEFAULT_REMINDER_DELAY;
-                glassSize = DEFAULT_GLASS_SIZE;
-                amount = DEFAULT_WATER_AMOUNT;
-                target = DEFAULT_WATER_TARGET;
+                reminderInterval = DefaultReminderInterval;
+                reminderDelay = DefaultReminderDelay;
+                glassSize = DefaultGlassSize;
+                amount = DefaultWaterAmount;
+                target = DefaultWaterTarget;
                 Timestamp = DateTime.UtcNow;
             }
 
