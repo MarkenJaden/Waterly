@@ -9,7 +9,7 @@
   <Identity
     Name="29506MarkenJaden.Waterly"
     Publisher="CN=BC08A000-3D82-430D-8831-AC747FF364E4"
-    Version="1.0.0.0" />
+    Version="1.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="50b9dfb7-cd9c-4af8-bb3c-e69370bf74dc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -40,7 +40,7 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\WaterDrops.png" ShortName="WaterlyLogo">
         </uap:DefaultTile >
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:LockScreen BadgeLogo="Assets\WaterDrops.png" Notification="badgeAndTileText"/>
+        <uap:LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\BadgeLogo.png"/>
       </uap:VisualElements>
     </Application>
   </Applications>
