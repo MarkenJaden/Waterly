@@ -43,10 +43,7 @@ namespace Waterly.Utils
             ToastNotificationManager.History.Clear();
 
             // Clear any pending notification
-            foreach (var notification in notifier.GetScheduledToastNotifications())
-            {
-                notifier.RemoveFromSchedule(notification);
-            }
+            foreach (var notification in notifier.GetScheduledToastNotifications()) notifier.RemoveFromSchedule(notification);
 
             if (!App.Settings.NotificationsEnabled) return;
             if (App.User.Water.Amount < App.User.Water.Target)
@@ -70,10 +67,7 @@ namespace Waterly.Utils
         private void OnWaterAmountChanged(Water water, WaterAmountEventArgs args)
         {
             // If the user just registered a drink that's large enough, the next reminder is rescheduled
-            if (args.DeltaAmount > water.GlassSize / 2)
-            {
-                ScheduleNextDrinkReminder();
-            }
+            if (args.DeltaAmount > water.GlassSize / 2) ScheduleNextDrinkReminder();
         }
 
 
@@ -85,10 +79,7 @@ namespace Waterly.Utils
         public void UpdateNotificationSchedule(bool rescheduleTime)
         {
             // Remove previously scheduled notifications
-            foreach (var notification in notifier.GetScheduledToastNotifications())
-            {
-                notifier.RemoveFromSchedule(notification);
-            }
+            foreach (var notification in notifier.GetScheduledToastNotifications()) notifier.RemoveFromSchedule(notification);
 
             if (!App.Settings.NotificationsEnabled) return;
             if (App.User.Water.Amount < App.User.Water.Target)
@@ -133,10 +124,7 @@ namespace Waterly.Utils
                 if (DateTime.Now < nextReminderTime)
                 {
                     // Make sure that the next reminder is properly scheduled
-                    if (notifier.GetScheduledToastNotifications().Count(i => i.Group == "DrinkReminder") == 0)
-                    {
-                        ScheduleDrinkReminder(nextReminderTime, nextReminderTag);
-                    }
+                    if (notifier.GetScheduledToastNotifications().Count(i => i.Group == "DrinkReminder") == 0) ScheduleDrinkReminder(nextReminderTime, nextReminderTag);
                 }
                 else    /* DateTime.Now >= nextReminderTime */
                 {
@@ -153,10 +141,7 @@ namespace Waterly.Utils
             else
             {
                 // Remove all scheduled reminders
-                foreach (var notification in notifier.GetScheduledToastNotifications())
-                {
-                    notifier.RemoveFromSchedule(notification);
-                }
+                foreach (var notification in notifier.GetScheduledToastNotifications()) notifier.RemoveFromSchedule(notification);
             }
         }
 
@@ -167,10 +152,7 @@ namespace Waterly.Utils
         public void PostponeDrinkReminder()
         {
             // Remove any other scheduled drink reminder
-            foreach (var notification in notifier.GetScheduledToastNotifications().Where(notification => notification.Group == "DrinkReminder"))
-            {
-                notifier.RemoveFromSchedule(notification);
-            }
+            foreach (var notification in notifier.GetScheduledToastNotifications().Where(notification => notification.Group == "DrinkReminder")) notifier.RemoveFromSchedule(notification);
 
             if (!App.Settings.NotificationsEnabled || App.User.Water.Amount >= App.User.Water.Target) return;
             // Postpone the same notification to User.Water.ReminderDelay minutes from now
@@ -185,10 +167,7 @@ namespace Waterly.Utils
         public void ScheduleNextDrinkReminder()
         {
             // Remove any other scheduled drink reminder
-            foreach (var notification in notifier.GetScheduledToastNotifications().Where(notification => notification.Group == "DrinkReminder"))
-            {
-                notifier.RemoveFromSchedule(notification);
-            }
+            foreach (var notification in notifier.GetScheduledToastNotifications().Where(notification => notification.Group == "DrinkReminder")) notifier.RemoveFromSchedule(notification);
 
             if (!App.Settings.NotificationsEnabled || App.User.Water.Amount >= App.User.Water.Target) return;
             // And schedule the next one in User.Water.ReminderInterval minutes
