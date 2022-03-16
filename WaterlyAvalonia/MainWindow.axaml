@@ -20,7 +20,7 @@
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
         <Panel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock>Waterly!</TextBlock>
+            <TextBlock>Waterly 1.0.0!</TextBlock>
         </Panel>
     </Panel>
 </Window>

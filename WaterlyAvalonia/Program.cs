@@ -1,5 +1,6 @@
 using Avalonia;
 using System;
+using System.Threading.Tasks;
 using Squirrel;
 
 namespace WaterlyAvalonia
@@ -38,6 +39,18 @@ namespace WaterlyAvalonia
         private static void OnAppRun(SemanticVersion version, IAppTools tools, bool firstRun)
         {
             tools.SetProcessAppUserModelId();
+            UpdateMyApp();
+        }
+        private static async Task UpdateMyApp()
+        {
+            using var mgr = new UpdateManager("https://waterly.nekos.lol/updates");
+            var newVersion = await mgr.UpdateApp();
+
+            // optionally restart the app automatically, or ask the user if/when they want to restart
+            if (newVersion != null)
+            {
+                UpdateManager.RestartApp();
+            }
         }
     }
 }
