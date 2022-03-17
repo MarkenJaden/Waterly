@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,7 +8,13 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <UseWPF>False</UseWPF>
     <ApplicationIcon>Assets\Images\waterdrops_icon.ico</ApplicationIcon>
+    <AssemblyName>Waterly</AssemblyName>
+    <RootNamespace>Waterly</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <UseWindowsForms>False</UseWindowsForms>
+    <DebugType>portable</DebugType>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile>8AC552AD577E37AD2C6808D72AA331D6A96B4B3FEBFF34CE9BC0578E08055EC3.crt</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
@@ -164,6 +170,9 @@
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.13" />
     <PackageReference Include="Clowd.Squirrel" Version="2.8.40" />
+    <!--<PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />-->
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
   </ItemGroup>
 </Project>

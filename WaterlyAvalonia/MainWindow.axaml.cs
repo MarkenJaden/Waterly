@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace WaterlyAvalonia
+namespace Waterly
 {
     public partial class MainWindow : Window
     {

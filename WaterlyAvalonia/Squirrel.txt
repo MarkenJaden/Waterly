@@ -1,0 +1,1 @@
+Squirrel.exe pack --packId "Waterly" --packVersion "1.0.0" --packDirectory "WaterlyAvalonia\bin\Release\net6.0\publish" --packAuthors "MarkenJaden" --packTitle "Waterly" --setupIcon "WaterlyAvalonia\Assets\Images/waterdrops_icon.ico" --splashImage "WaterlyAvalonia\Assets\Images/waterdrops_icon.png"
